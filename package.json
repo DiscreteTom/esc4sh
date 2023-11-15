@@ -1,5 +1,6 @@
 {
   "name": "esc4sh",
+  "description": "Escape a string to use it in shell. Support both linux and windows (cmd and powershell).",
   "version": "0.1.0",
   "main": "out/index.js",
   "types": "out/index.d.ts",
