@@ -5,7 +5,7 @@
 ![build](https://img.shields.io/github/actions/workflow/status/DiscreteTom/esc4sh/publish.yml?style=flat-square)
 ![license](https://img.shields.io/github/license/DiscreteTom/esc4sh?style=flat-square)
 
-Escape a string to use it in shell. Support both linux and windows.
+Escape a string to use it in shell. Support both linux and windows (cmd and powershell).
 
 ## Install
 
@@ -15,7 +15,21 @@ yarn add esc4sh
 
 ## Usage
 
-TODO
+```ts
+// auto detect os and shell, not working in browser
+const manager = new Manager();
+manager.escape("I'm OK");
+
+// explicitly specify shell, these can be used in browser
+esc4sh("I'm OK") === String.raw`'I'\''m OK'`; // linux sh/bash
+esc4cmd("I'm OK") === String.raw`"I'm OK"`; // windows cmd
+esc4ps("I'm OK") === String.raw`'I''m OK'`; // windows powershell
+
+// helpers, these are not working in browser
+isWindows(); // => boolean
+isCmd(); // => boolean
+isPowershell(); // => boolean
+```
 
 ## Credit
 
