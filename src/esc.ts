@@ -1,6 +1,6 @@
 import { isWindows } from "./const";
 
-export function esc4linux(s: string): string {
+export function esc4sh(s: string): string {
   // for empty string, quoted empty string is the only way to represent it.
   if (s.length === 0) return "''";
 
@@ -13,7 +13,7 @@ export function esc4linux(s: string): string {
     .replace(/\\'''/g, "\\'"); // remove non-escaped single-quote if there are enclosed between 2 escaped
 }
 
-export function esc4win(s: string): string {
+export function esc4cmd(s: string): string {
   // for empty string, quoted empty string is the only way to represent it.
   if (s.length === 0) return '""';
 
@@ -24,6 +24,6 @@ export function esc4win(s: string): string {
   return `"${s.replace(/"/g, '\\"')}"`;
 }
 
-export function esc4sh(s: string): string {
-  return isWindows ? esc4win(s) : esc4linux(s);
+export function esc(s: string): string {
+  return isWindows ? esc4cmd(s) : esc4sh(s);
 }
