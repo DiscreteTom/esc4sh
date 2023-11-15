@@ -1,5 +1,3 @@
-import { isWindows } from "./const";
-
 /**
  * Escape a string for shell/bash on linux.
  */
@@ -45,8 +43,4 @@ export function esc4ps(s: string): string {
   return `'${s.replace(/'/g, "''")}'`
     .replace(/^'(?:'')+/g, "'") // deduplicate single-quote at the beginning
     .replace(/(?:'')+'$/g, "'"); // deduplicate single-quote at the end
-}
-
-export function esc(s: string): string {
-  return isWindows ? esc4cmd(s) : esc4sh(s);
 }
