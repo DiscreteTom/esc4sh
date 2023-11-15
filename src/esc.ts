@@ -1,5 +1,8 @@
 import { isWindows } from "./const";
 
+/**
+ * Escape a string for shell/bash on linux.
+ */
 export function esc4sh(s: string): string {
   // for empty string, quoted empty string is the only way to represent it.
   if (s.length === 0) return "''";
@@ -13,6 +16,9 @@ export function esc4sh(s: string): string {
     .replace(/\\'''/g, "\\'"); // remove non-escaped single-quote if there are enclosed between 2 escaped
 }
 
+/**
+ * Escape a string for cmd.exe on windows.
+ */
 export function esc4cmd(s: string): string {
   // for empty string, quoted empty string is the only way to represent it.
   if (s.length === 0) return '""';
