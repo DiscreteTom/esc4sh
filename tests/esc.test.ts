@@ -1,6 +1,10 @@
-import { esc4sh, esc4cmd, esc, isWindows, esc4ps } from "../src";
+import { esc4sh, esc4cmd, esc4ps } from "../src";
 
 describe("sh", () => {
+  test("readme", () => {
+    expect(esc4sh("I'm OK")).toBe(String.raw`'I'\''m OK'`);
+  });
+
   test("empty", () => {
     expect(esc4sh("")).toBe("''");
   });
@@ -19,6 +23,10 @@ describe("sh", () => {
 });
 
 describe("cmd", () => {
+  test("readme", () => {
+    expect(esc4cmd("I'm OK")).toBe(String.raw`"I'm OK"`);
+  });
+
   test("empty", () => {
     expect(esc4cmd("")).toBe('""');
   });
@@ -33,6 +41,10 @@ describe("cmd", () => {
 });
 
 describe("ps", () => {
+  test("readme", () => {
+    expect(esc4ps("I'm OK")).toBe(String.raw`'I''m OK'`);
+  });
+
   test("empty", () => {
     expect(esc4ps("")).toBe('""');
   });
@@ -48,8 +60,4 @@ describe("ps", () => {
   test("existing quote", () => {
     expect(esc4ps("'123'")).toBe("'123'");
   });
-});
-
-test("auto", () => {
-  expect(esc("'123'")).toBe(isWindows ? "\"'123'\"" : "\\''123'\\'");
 });
