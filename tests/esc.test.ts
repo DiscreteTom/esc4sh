@@ -1,6 +1,10 @@
 import { esc4linux, esc4win, esc4sh, isWindows } from "../src";
 
 describe("linux", () => {
+  test("empty", () => {
+    expect(esc4linux("")).toBe("''");
+  });
+
   test("simple", () => {
     expect(esc4linux("123")).toBe("'123'");
   });
@@ -15,6 +19,10 @@ describe("linux", () => {
 });
 
 describe("windows", () => {
+  test("empty", () => {
+    expect(esc4win("")).toBe('""');
+  });
+
   test("simple", () => {
     expect(esc4win("123")).toBe('"123"');
   });
