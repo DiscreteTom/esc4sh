@@ -8,7 +8,9 @@ export function esc4linux(s: string): string {
   // except single quote itself.
   // if there is a single quote in the content, we need to escape it using `'\''`
   // e.g. `I'm` -> `'I'\''m'`
-  return `'${s.replace(/'/g, "'\\''")}'`;
+  return `'${s.replace(/'/g, "'\\''")}'`
+    .replace(/^(?:'')+/g, "") // deduplicate single-quote at the beginning
+    .replace(/\\'''/g, "\\'"); // remove non-escaped single-quote if there are enclosed between 2 escaped
 }
 
 export function esc4win(s: string): string {

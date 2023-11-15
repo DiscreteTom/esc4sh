@@ -14,7 +14,7 @@ describe("linux", () => {
   });
 
   test("existing quote", () => {
-    expect(esc4linux("'123'")).toBe("''\\''123'\\'''");
+    expect(esc4linux("'123'")).toBe("\\''123'\\'");
   });
 });
 
@@ -33,5 +33,5 @@ describe("windows", () => {
 });
 
 test("sh", () => {
-  expect(esc4sh("'123'")).toBe(isWindows ? "\"'123'\"" : "''\\''123'\\'''");
+  expect(esc4sh("'123'")).toBe(isWindows ? "\"'123'\"" : "\\''123'\\'");
 });
