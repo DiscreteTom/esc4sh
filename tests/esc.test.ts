@@ -1,4 +1,4 @@
-import { esc4sh, esc4cmd, esc, isWindows } from "../src";
+import { esc4sh, esc4cmd, esc, isWindows, esc4ps } from "../src";
 
 describe("sh", () => {
   test("empty", () => {
@@ -29,6 +29,24 @@ describe("cmd", () => {
 
   test("existing quote", () => {
     expect(esc4cmd('"123"')).toBe('"\\"123\\""');
+  });
+});
+
+describe("ps", () => {
+  test("empty", () => {
+    expect(esc4ps("")).toBe('""');
+  });
+
+  test("simple", () => {
+    expect(esc4ps("123")).toBe("'123'");
+  });
+
+  test("single quotes", () => {
+    expect(esc4ps("I'm")).toBe("'I''m'");
+  });
+
+  test("existing quote", () => {
+    expect(esc4ps("'123'")).toBe("'123'");
   });
 });
 
