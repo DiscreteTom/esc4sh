@@ -1,6 +1,6 @@
 import { esc4sh, esc4cmd, esc, isWindows } from "../src";
 
-describe("linux", () => {
+describe("sh", () => {
   test("empty", () => {
     expect(esc4sh("")).toBe("''");
   });
@@ -18,7 +18,7 @@ describe("linux", () => {
   });
 });
 
-describe("windows", () => {
+describe("cmd", () => {
   test("empty", () => {
     expect(esc4cmd("")).toBe('""');
   });
@@ -32,6 +32,6 @@ describe("windows", () => {
   });
 });
 
-test("sh", () => {
+test("auto", () => {
   expect(esc("'123'")).toBe(isWindows ? "\"'123'\"" : "\\''123'\\'");
 });
