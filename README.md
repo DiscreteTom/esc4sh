@@ -15,8 +15,9 @@ yarn add esc4sh
 
 ## Usage
 
+Auto detect os and shell (not working in browser):
+
 ```ts
-// auto detect os and shell, not working in browser
 import { Manager } from "esc4sh";
 const manager = new Manager();
 manager.escape("something");
@@ -24,17 +25,29 @@ manager.escape("something");
 // use Array.map to escape multiple strings
 // and join them with space to form an executable command
 const cmd = ["curl", ...options.map((o) => manager.escape(o))].join(" ");
+```
 
-// explicitly specify shell, these can be used in browser
-import { esc4cmd, esc4ps, esc4sh } from "esc4sh";
+Explicitly specify shell. These can be used in browser.
+
+```ts
+import { esc4sh, esc4cmd, esc4ps, esc } from "esc4sh";
 // linux sh/bash
 console.log(esc4sh("$PATH")); // => '$PATH'
 // windows cmd
 console.log(esc4cmd("%PATH$")); // => "%PATH%"
 // windows powershell
 console.log(esc4ps("$env:PATH")); // => '$env:PATH'
+// escape by options
+esc("something", {
+  isWindows: true,
+  isCmd: true,
+  isPowershell: false,
+});
+```
 
-// helpers, these are not working in browser
+Helpers (not working in browser).
+
+```ts
 import { isWindows, isCmd, isPowershell } from "esc4sh";
 isWindows(); // => boolean
 isCmd(); // => boolean
