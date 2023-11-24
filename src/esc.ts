@@ -44,3 +44,24 @@ export function esc4ps(s: string): string {
     .replace(/^'(?:'')+/g, "'") // deduplicate single-quote at the beginning
     .replace(/(?:'')+'$/g, "'"); // deduplicate single-quote at the end
 }
+
+/**
+ * Escape a string by the options.
+ */
+export function esc(
+  s: string,
+  options: {
+    isWindows: boolean;
+    isPowershell: boolean;
+    isCmd: boolean;
+  },
+) {
+  if (options.isWindows) {
+    if (options.isPowershell) return esc4ps(s);
+    if (options.isCmd) return esc4cmd(s);
+    return esc4sh(s); // treat unknown shell as bash
+  } else {
+    // treat non-windows as bash
+    return esc4sh(s);
+  }
+}

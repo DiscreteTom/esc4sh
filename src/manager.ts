@@ -1,5 +1,5 @@
 import { isCmd, isPowershell, isWindows } from "./env";
-import { esc4cmd, esc4ps, esc4sh } from "./esc";
+import { esc } from "./esc";
 
 /**
  * Auto detect the current shell and platform when instantiated.
@@ -20,13 +20,10 @@ export class Manager {
    * Escape a string for the current shell.
    */
   escape(s: string): string {
-    if (this.isWindows) {
-      if (this.isPowershell) return esc4ps(s);
-      if (this.isCmd) return esc4cmd(s);
-      return esc4sh(s); // treat unknown shell as bash
-    } else {
-      // treat non-windows as bash
-      return esc4sh(s);
-    }
+    return esc(s, {
+      isWindows: this.isWindows,
+      isPowershell: this.isPowershell,
+      isCmd: this.isCmd,
+    });
   }
 }
