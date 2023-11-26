@@ -47,18 +47,33 @@ export function esc4ps(s: string): string {
 
 /**
  * Escape a string by the options.
+ * @example
+ * esc(""); // for linux sh/bash
+ * esc("", { windows: true }); // for windows cmd
+ * esc("", { windows: true, powershell: true }); // for windows powershell
  */
 export function esc(
   s: string,
-  options: {
-    isWindows: boolean;
-    isPowershell: boolean;
-    isCmd: boolean;
+  options?: {
+    /**
+     * @default false
+     */
+    windows?: boolean;
+    /**
+     * Only effective when `windows` is `true`.
+     * @default false
+     */
+    powershell?: boolean;
+    /**
+     * Only effective when `windows` is `true` and `powershell` is `false`.
+     * @default true
+     */
+    cmd?: boolean;
   },
 ) {
-  if (options.isWindows) {
-    if (options.isPowershell) return esc4ps(s);
-    if (options.isCmd) return esc4cmd(s);
+  if (options?.windows ?? false) {
+    if (options?.powershell ?? false) return esc4ps(s);
+    if (options?.cmd ?? true) return esc4cmd(s);
     return esc4sh(s); // treat unknown shell as bash
   } else {
     // treat non-windows as bash

@@ -21,9 +21,9 @@ export class Manager {
    */
   escape(s: string): string {
     return esc(s, {
-      isWindows: this.isWindows,
-      isPowershell: this.isPowershell,
-      isCmd: this.isCmd,
+      windows: this.isWindows,
+      powershell: this.isPowershell,
+      cmd: this.isCmd,
     });
   }
 }
