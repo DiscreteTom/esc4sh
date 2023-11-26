@@ -1,7 +1,7 @@
 {
   "name": "esc4sh",
   "description": "Escape a string to use it in shell. Support both linux and windows (cmd and powershell).",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "out/index.js",
   "types": "out/index.d.ts",
   "repository": "git@github.com:DiscreteTom/esc4sh.git",
