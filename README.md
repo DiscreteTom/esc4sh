@@ -19,6 +19,7 @@ Auto detect os and shell (not working in browser):
 
 ```ts
 import { Manager } from "esc4sh";
+
 const manager = new Manager();
 manager.escape("something");
 
@@ -31,24 +32,25 @@ Explicitly specify shell. These can be used in browser.
 
 ```ts
 import { esc4sh, esc4cmd, esc4ps, esc } from "esc4sh";
+
 // linux sh/bash
 console.log(esc4sh("$PATH")); // => '$PATH'
 // windows cmd
 console.log(esc4cmd("%PATH$")); // => "%PATH%"
 // windows powershell
 console.log(esc4ps("$env:PATH")); // => '$env:PATH'
+
 // escape by options
-esc("something", {
-  isWindows: true,
-  isCmd: true,
-  isPowershell: false,
-});
+esc(""); // for linux sh/bash
+esc("", { windows: true }); // for windows cmd
+esc("", { windows: true, powershell: true }); // for windows powershell
 ```
 
 Helpers (not working in browser).
 
 ```ts
 import { isWindows, isCmd, isPowershell } from "esc4sh";
+
 isWindows(); // => boolean
 isCmd(); // => boolean
 isPowershell(); // => boolean
