@@ -44,3 +44,39 @@ export function esc4ps(s: string): string {
     .replace(/^'(?:'')+/g, "'") // deduplicate single-quote at the beginning
     .replace(/(?:'')+'$/g, "'"); // deduplicate single-quote at the end
 }
+
+/**
+ * Escape a string by the options.
+ * @example
+ * esc(""); // for linux sh/bash
+ * esc("", { windows: true }); // for windows cmd
+ * esc("", { windows: true, powershell: true }); // for windows powershell
+ */
+export function esc(
+  s: string,
+  options?: {
+    /**
+     * @default false
+     */
+    windows?: boolean;
+    /**
+     * Only effective when `windows` is `true`.
+     * @default false
+     */
+    powershell?: boolean;
+    /**
+     * Only effective when `windows` is `true` and `powershell` is `false`.
+     * @default true
+     */
+    cmd?: boolean;
+  },
+) {
+  if (options?.windows ?? false) {
+    if (options?.powershell ?? false) return esc4ps(s);
+    if (options?.cmd ?? true) return esc4cmd(s);
+    return esc4sh(s); // treat unknown shell as bash
+  } else {
+    // treat non-windows as bash
+    return esc4sh(s);
+  }
+}
