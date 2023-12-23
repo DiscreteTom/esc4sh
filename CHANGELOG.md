@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v0.1.2
+
+- Feat: add dist build.
+
 ## v0.1.1
 
 - Feat: add function `esc` as the browser friendly version of `Manager.escape`.
