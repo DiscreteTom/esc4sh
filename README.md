@@ -7,6 +7,8 @@
 
 Escape a string to use it in shell. Support both linux and windows (cmd and powershell).
 
+Try it online in the [playground](https://dttk.discretetom.com/js-playground?crushed=%28%27dependencieG%27https%253A%252F%252Fcdn.jsdelivr.net%252FnpmO%25400.1.2%252FdistO.min.js%27%255D%7EcellGJPrepareClib-*BI%28E4cmdM4psM%2520%29NB*N.*Ftrue%7Eid%21D787179%29%252CJCs-*%257B%255C%27%2524PATH%255C%27%257DBBLole.log%257Bs%257DFfalse%7Eid%21K%29%255D%7EpanelGK%255D%29*esc4sh-%2520%253D%2520B%255Cr%255CnC%27%7Ecode%21%27ID1703684E%2520escF%27%7Ereadonly%21Gs%21%255BILt%2520J%28%27name%21%27KD847765LconsM%252CEN-libO%252F*%2501ONMLKJIGFEDCB-*_).
+
 ## Install
 
 ```bash
